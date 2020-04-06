@@ -41,7 +41,7 @@ jobs:
         ssh-keyscan -t ed25519 $HOST >> "$SSH_PATH/known_hosts"
         cd public
         tar -zcvf $PACKAGE_NAME *
-        scp $PACKAGE_NAME $USER@$HOST:$BLOG_PATHg
+        scp $PACKAGE_NAME $USER@$HOST:$BLOG_PATH
         scp ../develop.sh $USER@$HOST:$BLOG_PATH
         ssh $HOST@$HOST "chmod +x $BLOG_PATH/develop.sh && $BLOG_PATH/develop.sh"
         exit        
