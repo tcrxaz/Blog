@@ -23,4 +23,6 @@ cd $HOME/blog
 # 解压文件
 tar -zxf $file_path -C $develop_path
 
+rm -rf $file_path
+
 echo 'Done.'
