@@ -1,0 +1,44 @@
+theme = "harbor"
+baseURL = "https://tcrxaz.com/"
+languageCode = "zh"
+author = "Lacnce Chen"
+title = "Noxus"
+paginate = 3
+DefaultContentLanguage = "zh"
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
+pygmentsUseClasses = true
+
+[Author]
+  name = "Lacnce Chen"
+
+[outputs]
+  section = ["JSON", "HTML"]
+
+[taxonomies]
+  tags = "tags"
+  category = "categories"
+
+[[params.nav]]
+  identifier = "archives"
+  name = "Archives"
+  icon = "fas fa-archive fa-lg"
+  url = "archives"
+  weight = 3
+
+[[params.nav]]
+  identifier = "about"
+  name = "About"
+  icon = "fas fa-user fa-lg"
+  url = "/about/"
+  weight = 3
+
+[params]
+  mainSections = ["post"]
+  favicon = "favicon.ico"
+
+  [params.logo]
+    url = "icon.jpg"
+    width = 50
+    height = 50
+    alt = "Logo"
