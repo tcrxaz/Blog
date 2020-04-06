@@ -21,7 +21,6 @@ fi
 cd $HOME/blog
 
 # 解压文件
-tar -zxvf $file_path -C $develop_path
+tar -zxf $file_path -C $develop_path
 
 echo 'Done.'
-exit
