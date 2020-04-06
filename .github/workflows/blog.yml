@@ -6,41 +6,33 @@ on:
       - master
 jobs:
   build:
-    # 镜像市场
+
+    # 基础环境
     runs-on: ubuntu-latest
+
+    # 步骤
     steps:
+      # 拉取代码
     - uses: actions/checkout@v2
-      
+
+      # 安装 hugo
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2.4.9
       with: 
         hugo-version: 'latest'
 
+      # 编译文件
     - name: Build
       run: hugo --minify
 
-    # Runs a set of commands using the runners shell
+      # 部署到私有服务器
     - name: Deploy
+      uses: easingthemes/ssh-deploy@v2.0.9
       env: 
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        HOST: ${{ secrets.HOST }}
-        USER: ${{ secrets.USER }}
-        BLOG_PATH: ${{ secrets.BLOG_PATH }}
-        PACKAGE_NAME: public.tar.gz
-      run: |
-        SSH_PATH="$HOME/.ssh"
-        mkdir -p $SSH_PATH
-        touch "$SSH_PATH/known_hosts"
-        echo "$ACTIONS_DEPLOY_KEY" > "$SSH_PATH/id_ed25519"
-        chmod 700 "$SSH_PATH"
-        chmod 600 "$SSH_PATH/known_hosts"
-        chmod 600 "$SSH_PATH/id_ed25519"
-        eval $(ssh-agent)
-        ssh-add "$SSH_PATH/id_ed25519"
-        ssh-keyscan -t ed25519 $HOST >> "$SSH_PATH/known_hosts"
-        cd public
-        tar -zcvf $PACKAGE_NAME *
-        scp $PACKAGE_NAME $USER@$HOST:$BLOG_PATH
-        scp ../deploy.sh $USER@$HOST:$BLOG_PATH
-        ssh $USER@$HOST "chmod +x $BLOG_PATH/deploy.sh && $BLOG_PATH/deploy.sh && rm $BLOG_PATH/deploy.sh"
-        exit        
+        SSH_PRIVATE_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        ARGS: "-avz --delete"
+        SOURCE: "public/"
+        REMOTE_HOST: ${{ secrets.HOST }}
+        REMOTE_USER: ${{ secrets.USER }}
+        REMOTE_PORT: "22"
+        TARGET: ${{ secrets.BLOG_PATH }}
