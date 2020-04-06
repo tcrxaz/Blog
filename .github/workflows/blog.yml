@@ -43,5 +43,5 @@ jobs:
         tar -zcvf $PACKAGE_NAME *
         scp $PACKAGE_NAME $USER@$HOST:$BLOG_PATH
         scp ../develop.sh $USER@$HOST:$BLOG_PATH
-        ssh $USER@$HOST "chmod +x $BLOG_PATH/develop.sh && $BLOG_PATH/develop.sh"
+        ssh $USER@$HOST "chmod +x $BLOG_PATH/develop.sh && $BLOG_PATH/develop.sh && rm $BLOG_PATH/develop.sh"
         exit        
