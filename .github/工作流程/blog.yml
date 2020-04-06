@@ -1,0 +1,53 @@
+# This is a basic workflow to help you get started with Actions
+
+name: blog
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+      - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # 镜像市场
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2.4.9
+      with: 
+        hugo-version: 'latest'
+
+    # Runs a set of commands using the runners shell
+    - name: Build
+      run: hugo --minify
+
+    - name: Deploy
+      env: 
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        HOST: ${{ secrets.HOST }}
+        USER: ${{ secrets.USER }}
+        BLOG_PATH: ${{ secrets.BLOG_PATH }}
+        PACKAGE_NAME: public.tar.gz
+      run: |
+        SSH_PATH="$HOME/.ssh"
+        mkdir -p $SSH_PATH
+        touch "$SSH_PATH/known_hosts"
+        echo "$ACTIONS_DEPLOY_KEY" > "$SSH_PATH/id_ed25519"
+        chmod 700 "$SSH_PATH"
+        chmod 600 "$SSH_PATH/known_hosts"
+        chmod 600 "$SSH_PATH/id_ed25519"
+        eval $(ssh-agent)
+        ssh-add "$SSH_PATH/id_ed25519"
+        ssh-keyscan -t ed25519 $HOST >> "$SSH_PATH/known_hosts"
+        cd public
+        tar -zcvf $PACKAGE_NAME *
+        scp $PACKAGE_NAME $USER@$HOST:$BLOG_PATHg
+        scp ../devlop.sh $USER@$HOST:$BLOG_PATH
+        ssh $HOST@$HOST "chmod +x $BLOG_PATH/devlop.sh && $BLOG_PATH/devlop.sh"
+        exit        
