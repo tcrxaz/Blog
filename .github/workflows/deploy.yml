@@ -21,14 +21,14 @@ jobs:
     - name: Move File
       run: |
         mv -f content Blog
-        mv -f static Blog
+        mv -f assets Blog
         mv -f config.toml Blog
     
     - name: Checkout Theme
       uses: actions/checkout@v2
       with:
-        repository: matsuyoshi30/harbor
-        path: Blog/themes/harbor
+        repository: CaiJimmy/hugo-theme-stack
+        path: Blog/themes/hugo-theme-stack
 
     - name: Build
       working-directory: ./Blog

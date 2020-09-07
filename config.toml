@@ -1,44 +1,67 @@
-theme = "harbor"
-baseURL = "https://tcrxaz.com/"
+theme = "hugo-theme-stack"
+baseurl = "https://tcrxaz.com/"
 languageCode = "zh"
-author = "Lacnce Chen"
 title = "Noxus"
-paginate = 3
-DefaultContentLanguage = "zh"
-enableInlineShortcodes = true
-footnoteReturnLinkContents = "^"
-pygmentsUseClasses = true
 
-[Author]
-  name = "Lacnce Chen"
-
-[outputs]
-  section = ["JSON", "HTML"]
-
-[taxonomies]
-  tags = "tags"
-  category = "categories"
-
-[[params.nav]]
-  identifier = "archives"
-  name = "Archives"
-  icon = "fas fa-archive fa-lg"
-  url = "archives"
-  weight = 3
-
-[[params.nav]]
-  identifier = "about"
-  name = "About"
-  icon = "fas fa-user fa-lg"
-  url = "/about/"
-  weight = 3
+[permalinks]
+    post = "/p/:slug/"
+    page = "/:slug/"
 
 [params]
-  mainSections = ["post"]
-  favicon = "favicon.ico"
+    mainSections = ["post"]
+    favicon = ""
+    [params.sidebar]
+        emoji = "🍥"
+        avatar = "img/avatar.png"
+        subtitle = "分享刚编出的故事"
+    [params.article]
+        [params.article.license]
+            enabled = true 
+            default = "Licenced under CC BY-NC-SA 4.0"
+    [params.widgets]
+        enabled = ['archive', 'tag-cloud']
+        [params.widgets.archive]
+            limit = 5
+            ### Archive page relative URL
+            path = "archive"       
+        [params.widgets.tagCloud]
+            limit = 10
+    [params.opengraph]
+        defaultImage = ""
+        [params.opengraph.twitter]
+            site = ""
+            
 
-  [params.logo]
-    url = "icon.jpg"
-    width = 50
-    height = 50
-    alt = "Logo"
+[menu]
+    [[menu.main]]
+        identifier = "home"
+        name = "Home"
+        url = "/"
+        weight = -100
+        pre = "home"
+    [[menu.main]]
+        identifier = "about-cn"
+        name = "About"
+        url = "/about/"
+        weight = -90
+        pre = "user"
+    [[menu.main]]
+        identifier = "archive"
+        name = "Archive"
+        url = "/archive/"
+        weight = -70
+        pre = "archive"
+
+[related]
+    includeNewer = true
+    threshold = 60
+    toLower = false
+
+    [[related.indices]]
+        name = "tags"
+        weight = 100
+
+    [[related.indices]]
+        name = "categories"
+        weight = 200
+
