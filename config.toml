@@ -35,19 +35,19 @@ title = "Noxus"
 [menu]
     [[menu.main]]
         identifier = "home"
-        name = "Home"
+        name = "首页"
         url = "/"
         weight = -100
         pre = "home"
     [[menu.main]]
         identifier = "about-cn"
-        name = "About"
+        name = "关于"
         url = "/about/"
         weight = -90
         pre = "user"
     [[menu.main]]
         identifier = "archive"
-        name = "Archive"
+        name = "归档"
         url = "/archive/"
         weight = -70
         pre = "archive"
