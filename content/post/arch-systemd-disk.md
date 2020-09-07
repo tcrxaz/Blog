@@ -1,8 +1,8 @@
 ---
 title: "在 Arch 中使用 Systemd 挂载文件系统"
 date: 2019-09-12
-draft: false
-categories: ["arch", "systemd"]
+tags: ["arch", "systemd"]
+categories: ["arch"]
 ---
 
 为什么使用 Systemd 来挂载文件系统而不使用 fstab？使用 fstab 的时候如果设备被移除会导致系统启动失败，无法进入系统（只能进入临时修复系统），Systemd 则没有这个问题。

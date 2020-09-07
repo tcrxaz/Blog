@@ -1,7 +1,7 @@
 ---
 title: "Arch 安装与配置"
 date: 2019-09-11
-draft: false
+tags: ["arch", "install"]
 categories: ["arch"]
 ---
 

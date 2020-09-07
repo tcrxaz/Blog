@@ -1,7 +1,7 @@
----
-title: "About"
-draft: false
----
++++
+title = "About"
+date = "2019-02-28"
++++
 
 There is no royal road to learning.
 
