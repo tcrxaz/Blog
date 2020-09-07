@@ -11,17 +11,18 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.4.11
+      uses: peaceiris/actions-hugo@v2
       with: 
         hugo-version: 'latest'
-    
+        extended: true
+
     - name: New Hugo Blog Site
       run: hugo new site Blog
 
     - name: Move File
       run: |
         mv -f content Blog
-        mv -f assets/img Blog/assets
+        mv -f assets Blog
         mv -f config.toml Blog
     
     - name: Checkout Theme
