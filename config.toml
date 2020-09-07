@@ -1,6 +1,6 @@
 theme = "hugo-theme-stack"
 baseurl = "https://tcrxaz.com/"
-languageCode = "zh"
+languageCode = "zh-CN"
 title = "Noxus"
 
 [permalinks]
