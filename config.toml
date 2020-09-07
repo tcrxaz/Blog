@@ -12,7 +12,7 @@ title = "Noxus"
     favicon = ""
     [params.sidebar]
         emoji = "🍥"
-        avatar = "img/avatar.png"
+        avatar = "img/avatar.jpg"
         subtitle = "分享刚编出的故事"
     [params.article]
         [params.article.license]
