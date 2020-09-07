@@ -21,7 +21,7 @@ jobs:
     - name: Move File
       run: |
         mv -f content Blog
-        mv -f assets Blog
+        mv -f assets/img Blog/assets
         mv -f config.toml Blog
     
     - name: Checkout Theme
